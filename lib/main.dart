@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+import 'app/presenter/page_provider.dart';
+
+void main() {
+  runApp(Provider(
+    create: (_) => PageProvider(),
+    child: MyApp(),
+  ));
+}
 
 class MyApp extends StatelessWidget {
   @override
