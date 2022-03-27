@@ -41,11 +41,10 @@ class JRouterConfiguration implements IConfigNavigator {
           path: Routes.def,
 
           builder: (context, state) {
-            // final pageProvider =
-            //     Provider.of<PageProvider>(context, listen: false);
-            // final index = pageProvider.getPageIndex(state.params['page']!);
+            Provider.of<PageProvider>(context, listen: false)
+                .updateScrollController(state.params['page']!);
 
-            return HomePage1(
+            return HomePage(
               key: state.pageKey,
               page: state.params['page']!,
             );
