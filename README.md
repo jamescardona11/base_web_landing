@@ -3,4 +3,4 @@
 Base application for creating a Landing page with responsive.
 
 
-<img src="preview.gif" width="225"/>
+<img src="preview.gif" width="500"/>
