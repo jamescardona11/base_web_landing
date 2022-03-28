@@ -18,7 +18,7 @@ class IndexPageProvider extends ChangeNotifier {
   List<HeaderItemUIModel> get items => _items;
   PageController get controller => _controller;
 
-  void toggle(int id) {
+  void onToggleItem(int id) {
     if (_items[id].isSelected) return;
     _items = [
       for (final item in _items)
@@ -31,7 +31,15 @@ class IndexPageProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void goTo(int index) {}
+  void goTo(int id) {
+    onToggleItem(id);
+
+    _controller.animateToPage(
+      id,
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.easeInOut,
+    );
+  }
 
   void updateScrollController(String routeName) {
     _controller = PageController(initialPage: _getPageIndex(routeName))
@@ -41,7 +49,7 @@ class IndexPageProvider extends ChangeNotifier {
           _curentIndex = index;
           final item = _items[_curentIndex];
 
-          toggle(_curentIndex);
+          onToggleItem(_curentIndex);
           _changeWindowStatge(item.route, item.title);
         }
       });

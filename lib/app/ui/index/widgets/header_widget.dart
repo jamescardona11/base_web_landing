@@ -51,7 +51,6 @@ class _MenuItemList extends StatelessWidget {
   Widget build(BuildContext context) {
     final headerItems = context
         .select<IndexPageProvider, List<HeaderItemUIModel>>((it) => it.items);
-    print('listen');
 
     return ColoredBox(
       color: Colors.black,
@@ -78,30 +77,56 @@ class _MenuItemList extends StatelessWidget {
 }
 
 class _HeaderItemWidget extends StatelessWidget {
-  const _HeaderItemWidget({
+  _HeaderItemWidget({
     Key? key,
     required this.item,
   }) : super(key: key);
 
   final HeaderItemUIModel item;
+  final isHover = ValueNotifier<bool>(false);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        context.read<IndexPageProvider>().toggle(item.id);
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Center(
-          child: Text(
-            item.title,
-            style: Theme.of(context).textTheme.headline2!.copyWith(
-                  color: item.isSelected ? kYellowColor : kCreamColor,
-                ),
+    final isSelected = item.isSelected;
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => _onHover(),
+      onExit: (_) => _onHover(),
+      child: GestureDetector(
+        onTap: () => context.read<IndexPageProvider>().goTo(item.id),
+        child: ValueListenableBuilder<bool>(
+          valueListenable: isHover,
+          builder: (_, isHover, __) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    item.title,
+                    style: Theme.of(context).textTheme.headline2!.copyWith(
+                          color: isSelected ? kYellowColor : kCreamColor,
+                        ),
+                  ),
+                  AnimatedContainer(
+                    width: !isSelected && isHover ? 10 : 0,
+                    height: !isSelected && isHover ? 10 : 0,
+                    duration: const Duration(microseconds: 300),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[100],
+                      borderRadius: borderRadiusNormal,
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
         ),
       ),
     );
+  }
+
+  void _onHover() {
+    isHover.value = !isHover.value;
   }
 }
