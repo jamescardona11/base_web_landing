@@ -1,6 +1,5 @@
 import 'package:base_web_landing/app/presenter/page_provider.dart';
-import 'package:base_web_landing/app/ui/pages/home_page.dart';
-import 'package:base_web_landing/app/ui/views/about_view.dart';
+import 'package:base_web_landing/app/ui/index/index_page.dart';
 import 'package:base_web_landing/core/navigator/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -44,7 +43,7 @@ class JRouterConfiguration implements IConfigNavigator {
             Provider.of<PageProvider>(context, listen: false)
                 .updateScrollController(state.params['page']!);
 
-            return HomePage(
+            return IndexPage(
               key: state.pageKey,
               page: state.params['page']!,
             );

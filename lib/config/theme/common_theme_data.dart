@@ -32,7 +32,7 @@ final headline2 = GoogleFonts.monda(
 );
 
 final headline3 = GoogleFonts.monda(
-  color: kBlackColor,
+  color: kCreamColor,
   fontWeight: FontWeight.w500,
 );
 

@@ -6,6 +6,8 @@ import 'package:base_web_landing/app/ui/shared/custom_menu_item.dart';
 import 'package:provider/provider.dart';
 
 class CustomAppWidget extends StatefulWidget {
+  const CustomAppWidget({Key? key}) : super(key: key);
+
   @override
   _CustomAppWidgetState createState() => _CustomAppWidgetState();
 }
@@ -21,7 +23,7 @@ class _CustomAppWidgetState extends State<CustomAppWidget>
 
     controller = AnimationController(
       vsync: this,
-      duration: Duration(microseconds: 200),
+      duration: const Duration(microseconds: 200),
     );
   }
 

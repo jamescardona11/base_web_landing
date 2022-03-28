@@ -1,14 +1,19 @@
-import 'package:flutter/material.dart';
+/// [def]
 
-import 'package:base_web_landing/app/presenter/page_provider.dart';
-import 'package:base_web_landing/app/ui/views/about_view.dart';
-import 'package:base_web_landing/app/ui/views/contact_view.dart';
-import 'package:base_web_landing/app/ui/views/home_view.dart';
-import 'package:base_web_landing/app/ui/views/location_view.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({
+/// [loc]
+import 'package:base_web_landing/app/presenter/page_provider.dart';
+import 'package:base_web_landing/app/ui/pages/about_view.dart';
+import 'package:base_web_landing/app/ui/pages/home_view.dart';
+import 'package:base_web_landing/app/ui/pages/contact_view.dart';
+import 'package:base_web_landing/app/ui/pages/location_view.dart';
+
+import 'widgets/header_widget.dart';
+
+class IndexPage extends StatefulWidget {
+  const IndexPage({
     Key? key,
     required this.page,
   }) : super(key: key);
@@ -16,10 +21,10 @@ class HomePage extends StatefulWidget {
   final String page;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<IndexPage> createState() => _IndexPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _IndexPageState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
     final pageProvider = Provider.of<PageProvider>(context, listen: false);
@@ -38,11 +43,7 @@ class _HomePageState extends State<HomePage> {
                 LocationView(),
               ],
             ),
-            // Positioned(
-            //   right: 20,
-            //   top: 20,
-            //   child: CustomAppWidget(),
-            // )
+            const HeaderContainerWidget(),
           ],
         ),
       ),
