@@ -14,24 +14,16 @@ class TopbarWidget extends StatelessWidget implements PreferredSizeWidget {
 
   const TopbarWidget({
     Key? key,
-    required this.callback,
   }) : super(key: key);
-
-  final VoidCallback callback;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.zero,
-      elevation: 10,
-      shadowColor: Colors.grey,
-      child: ResponsiveBuilder(
-        builder: (ctx, info) {
-          return info.isMobile
-              ? _TopbarForSmallScreenWidget(callback: callback)
-              : _TopbarForNoSmallScreenWidget();
-        },
-      ),
+    return ResponsiveBuilder(
+      builder: (ctx, info) {
+        return info.isMobile
+            ? const _TopbarForSmallScreenWidget()
+            : _TopbarForNoSmallScreenWidget();
+      },
     );
   }
 }
@@ -39,50 +31,55 @@ class TopbarWidget extends StatelessWidget implements PreferredSizeWidget {
 class _TopbarForSmallScreenWidget extends StatelessWidget {
   const _TopbarForSmallScreenWidget({
     Key? key,
-    required this.callback,
   }) : super(key: key);
-
-  final VoidCallback callback;
 
   @override
   Widget build(BuildContext context) {
-    return _CommonHeaderWidget(
-      child: Row(
-        children: [
-          const AppTitleWidget(),
-          const Spacer(),
+    return AppBar(
+        backgroundColor: kBlackColor,
+        title: const AppTitleWidget(),
+        centerTitle: true,
+        actions: [
           Padding(
             padding: getHorizontalPaddingMainPages(context),
             child: IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: callback,
+              icon: const Icon(
+                Icons.menu,
+                color: kCreamColor,
+              ),
+              onPressed: () => Scaffold.of(context).openEndDrawer(),
             ),
           )
-        ],
-      ),
-    );
+        ]);
   }
 }
 
 class _TopbarForNoSmallScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return _CommonHeaderWidget(
-      child: Stack(
-        children: [
-          const AppTitleWidget(),
-          ResponsiveVisibility.conditions(
-            visibleWhen: const [
-              ConditionBreakpoint<bool>.largerThan(
-                value: true,
-                breakpoint: 650,
+    return SafeArea(
+      child: Card(
+        margin: EdgeInsets.zero,
+        elevation: 10,
+        shadowColor: Colors.grey,
+        child: _CommonHeaderWidget(
+          child: Stack(
+            children: [
+              const AppTitleWidget(),
+              ResponsiveVisibility.conditions(
+                visibleWhen: const [
+                  ConditionBreakpoint<bool>.largerThan(
+                    value: true,
+                    breakpoint: 650,
+                  ),
+                ],
+                child: const Center(
+                  child: _MenuItemListWidget(),
+                ),
               ),
             ],
-            child: const Center(
-              child: _MenuItemListWidget(),
-            ),
           ),
-        ],
+        ),
       ),
     );
   }

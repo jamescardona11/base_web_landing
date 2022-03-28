@@ -27,7 +27,7 @@ packages:
     description:
       path: "."
       ref: dev
-      resolved-ref: a1fe16af5c79910ce5b58757173b935dfad394a5
+      resolved-ref: "885b832287889e57f7f24209aba052c8d8e4df5d"
       url: "https://github.com/jamescardona11/argo.git"
     source: git
     version: "0.0.2"

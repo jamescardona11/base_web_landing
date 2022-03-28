@@ -27,7 +27,7 @@ class AppTitleWidget extends StatelessWidget {
                   kYellowColor,
                 ],
               ),
-              ConditionalResponsiveWidget(
+              ConditionalResponsiveWidget<double>(
                 conditionsMatch: const [
                   ConditionBreakpoint<double>.smallerThan(
                     value: 22,

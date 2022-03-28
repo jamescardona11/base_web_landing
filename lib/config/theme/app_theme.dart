@@ -1,5 +1,7 @@
 import 'package:argo/argo.dart';
+import 'package:base_web_landing/config/values/values.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'common_theme_data.dart';
 
@@ -13,6 +15,7 @@ class AppTheme with IThemeDataRule {
         headline3: headline3.copyWith(fontSize: 24), //OK
         headline4: headline4.copyWith(fontSize: 20),
         headline5: headline5.copyWith(fontSize: 60),
+        bodyText2: headline1.copyWith(fontSize: 14),
         subtitle1: subtitle1.copyWith(fontSize: 12),
         subtitle2: subtitle2.copyWith(fontSize: 12),
         button: buttonStyle.copyWith(fontSize: 16),

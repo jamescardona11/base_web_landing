@@ -1,5 +1,6 @@
 /// [def]
 
+import 'package:argo/argo.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,16 +27,13 @@ class IndexPage extends StatefulWidget {
   State<IndexPage> createState() => _IndexPageState();
 }
 
-final _scaffoldState = GlobalKey<ScaffoldState>();
-
 class _IndexPageState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
     final indexPageProvider = context.read<IndexPageProvider>();
 
     return Scaffold(
-      key: _scaffoldState,
-      appBar: TopbarWidget(callback: _openDrawer),
+      appBar: const TopbarWidget(),
       endDrawer: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 250),
         child: const SideMenuWidget(),
@@ -43,7 +41,8 @@ class _IndexPageState extends State<IndexPage> {
       endDrawerEnableOpenDragGesture: false,
       body: PageView(
         controller: indexPageProvider.controller,
-        scrollDirection: Axis.vertical,
+        scrollDirection:
+            PlatformInfo.isMobile ? Axis.horizontal : Axis.vertical,
         children: const [
           HomeView(),
           AboutView(),
@@ -53,9 +52,5 @@ class _IndexPageState extends State<IndexPage> {
         ],
       ),
     );
-  }
-
-  void _openDrawer() {
-    _scaffoldState.currentState!.openEndDrawer();
   }
 }
