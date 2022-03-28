@@ -26,16 +26,21 @@ class IndexPage extends StatefulWidget {
   State<IndexPage> createState() => _IndexPageState();
 }
 
+final _scaffoldState = GlobalKey<ScaffoldState>();
+
 class _IndexPageState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
     final indexPageProvider = context.read<IndexPageProvider>();
+
     return Scaffold(
-      appBar: const TopbarWidget(),
+      key: _scaffoldState,
+      appBar: TopbarWidget(callback: _openDrawer),
       endDrawer: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 250),
         child: const SideMenuWidget(),
       ),
+      endDrawerEnableOpenDragGesture: false,
       body: PageView(
         controller: indexPageProvider.controller,
         scrollDirection: Axis.vertical,
@@ -48,5 +53,9 @@ class _IndexPageState extends State<IndexPage> {
         ],
       ),
     );
+  }
+
+  void _openDrawer() {
+    _scaffoldState.currentState!.openEndDrawer();
   }
 }

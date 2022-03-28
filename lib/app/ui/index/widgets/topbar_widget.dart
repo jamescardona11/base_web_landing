@@ -14,7 +14,10 @@ class TopbarWidget extends StatelessWidget implements PreferredSizeWidget {
 
   const TopbarWidget({
     Key? key,
+    required this.callback,
   }) : super(key: key);
+
+  final VoidCallback callback;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,7 @@ class TopbarWidget extends StatelessWidget implements PreferredSizeWidget {
       child: ResponsiveBuilder(
         builder: (ctx, info) {
           return info.isMobile
-              ? _TopbarForSmallScreenWidget()
+              ? _TopbarForSmallScreenWidget(callback: callback)
               : _TopbarForNoSmallScreenWidget();
         },
       ),
@@ -34,6 +37,13 @@ class TopbarWidget extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class _TopbarForSmallScreenWidget extends StatelessWidget {
+  const _TopbarForSmallScreenWidget({
+    Key? key,
+    required this.callback,
+  }) : super(key: key);
+
+  final VoidCallback callback;
+
   @override
   Widget build(BuildContext context) {
     return _CommonHeaderWidget(
@@ -45,7 +55,7 @@ class _TopbarForSmallScreenWidget extends StatelessWidget {
             padding: getHorizontalPaddingMainPages(context),
             child: IconButton(
               icon: const Icon(Icons.menu),
-              onPressed: () {},
+              onPressed: callback,
             ),
           )
         ],

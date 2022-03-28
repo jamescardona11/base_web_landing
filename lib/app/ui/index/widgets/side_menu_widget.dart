@@ -47,7 +47,6 @@ class SideMenuWidget extends StatelessWidget {
                       ))
                   .toList(),
 
-              SizedBox(height: kSpaceMedium),
               // Tags
             ],
           ),
