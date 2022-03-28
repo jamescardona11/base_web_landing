@@ -11,7 +11,8 @@ import 'package:base_web_landing/app/ui/pages/contact_view.dart';
 import 'package:base_web_landing/app/ui/pages/location_view.dart';
 import 'package:base_web_landing/app/ui/pages/other_view.dart';
 
-import 'widgets/header_widget.dart';
+import 'widgets/side_menu_widget.dart';
+import 'widgets/topbar_widget.dart';
 
 class IndexPage extends StatefulWidget {
   const IndexPage({
@@ -30,40 +31,22 @@ class _IndexPageState extends State<IndexPage> {
   Widget build(BuildContext context) {
     final indexPageProvider = context.read<IndexPageProvider>();
     return Scaffold(
-      body: Container(
-        decoration: buildBoxDecoration(),
-        child: Stack(
-          children: [
-            PageView(
-              controller: indexPageProvider.controller,
-              scrollDirection: Axis.vertical,
-              children: const [
-                HomeView(),
-                AboutView(),
-                ContactView(),
-                LocationView(),
-                OtherView(),
-              ],
-            ),
-            const HeaderContainerWidget(),
-          ],
-        ),
+      appBar: const TopbarWidget(),
+      endDrawer: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 250),
+        child: const SideMenuWidget(),
+      ),
+      body: PageView(
+        controller: indexPageProvider.controller,
+        scrollDirection: Axis.vertical,
+        children: const [
+          HomeView(),
+          AboutView(),
+          ContactView(),
+          LocationView(),
+          OtherView(),
+        ],
       ),
     );
   }
-
-  BoxDecoration buildBoxDecoration() => const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.pink,
-            Colors.deepPurple,
-          ],
-          stops: [
-            0.5,
-            0.5,
-          ],
-        ),
-      );
 }

@@ -7,6 +7,7 @@ final commonThemeData = ThemeData(
   primaryColorLight: kPrimaryColorLight,
   scaffoldBackgroundColor: kWhiteColor,
   colorScheme: ColorScheme.fromSwatch().copyWith(
+    primary: kBlackColor,
     secondary: kAccentColor,
     brightness: Brightness.dark,
   ),

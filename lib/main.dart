@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
 
 final _wrapConfig = WrapperConfig(
   globalBreakpoints: ScreenBreakpoints.values(
-    mobile: const SBValue.max(700),
+    mobile: const SBValue.max(650),
     tablet: const SBValue.max(1200),
     desktop: const SBValue.inf(),
   ),

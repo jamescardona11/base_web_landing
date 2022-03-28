@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 class PointsDecorationWidget extends StatelessWidget {
   const PointsDecorationWidget({
     Key? key,
-    this.quantityX = 2,
-    this.quantityY = 2,
     this.padding = true,
     this.radius = 6,
     this.delta = 2,
@@ -13,8 +11,8 @@ class PointsDecorationWidget extends StatelessWidget {
     this.colors,
   }) : super(key: key);
 
-  final int quantityX;
-  final int quantityY;
+  final int quantityX = 2;
+  final int quantityY = 2;
   final bool padding;
   final double radius;
   final double delta;
