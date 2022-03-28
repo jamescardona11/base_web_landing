@@ -1,4 +1,4 @@
-import 'package:base_web_landing/app/presenter/page_provider.dart';
+import 'package:base_web_landing/app/presenter/index_page_provider.dart';
 import 'package:base_web_landing/app/ui/index/index_page.dart';
 import 'package:base_web_landing/core/navigator/navigator.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +40,7 @@ class JRouterConfiguration implements IConfigNavigator {
           path: Routes.def,
 
           builder: (context, state) {
-            Provider.of<PageProvider>(context, listen: false)
+            Provider.of<IndexPageProvider>(context, listen: false)
                 .updateScrollController(state.params['page']!);
 
             return IndexPage(
@@ -58,7 +58,7 @@ class JRouterConfiguration implements IConfigNavigator {
       ],
       errorPageBuilder: (context, state) => MaterialPage<void>(
         key: state.pageKey,
-        child: Scaffold(
+        child: const Scaffold(
           body: SizedBox(
             child: Text('ERROROR'),
           ),

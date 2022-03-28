@@ -1,7 +1,8 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:base_web_landing/app/presenter/index_page_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:base_web_landing/app/presenter/page_provider.dart';
+import 'package:base_web_landing/app/presenter/index_page_provider.dart';
 import 'package:base_web_landing/app/ui/shared/custom_menu_item.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +30,7 @@ class _CustomAppWidgetState extends State<CustomAppWidget>
 
   @override
   Widget build(BuildContext context) {
-    final pageProvider = Provider.of<PageProvider>(context, listen: false);
+    final pageProvider = Provider.of<IndexPageProvider>(context, listen: false);
 
     return FadeIn(
       child: MouseRegion(
@@ -50,7 +51,7 @@ class _CustomAppWidgetState extends State<CustomAppWidget>
             width: 150,
             height: isOpen ? 260 : 50,
             color: Colors.black,
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
               children: [
                 _MenuTitle(isOpen: isOpen, controller: controller),

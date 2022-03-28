@@ -24,7 +24,7 @@ final itemsPage = [
   ),
   HeaderItemUIModel(
     id: 4,
-    title: 'Contact us',
-    route: '/contactus',
+    title: 'Other',
+    route: '/other',
   ),
 ];

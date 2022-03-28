@@ -2,20 +2,23 @@ import 'package:argo/argo.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'app/presenter/page_provider.dart';
+import 'app/presenter/index_page_provider.dart';
 import 'config/router/router.dart';
 import 'config/theme/theme.dart';
 import 'core/navigator/navigator.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
-    create: (_) => PageProvider(),
+    create: (_) => IndexPageProvider(),
     child: MyApp(),
   ));
 }
 
 class MyApp extends StatelessWidget {
+  MyApp({Key? key}) : super(key: key);
+
   final exaRouter = JRouter();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(

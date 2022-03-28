@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 /// [loc]
-import 'package:base_web_landing/app/presenter/page_provider.dart';
+import 'package:base_web_landing/app/presenter/index_page_provider.dart';
 import 'package:base_web_landing/app/ui/pages/about_view.dart';
 import 'package:base_web_landing/app/ui/pages/home_view.dart';
 import 'package:base_web_landing/app/ui/pages/contact_view.dart';
 import 'package:base_web_landing/app/ui/pages/location_view.dart';
+import 'package:base_web_landing/app/ui/pages/other_view.dart';
 
 import 'widgets/header_widget.dart';
 
@@ -27,20 +28,21 @@ class IndexPage extends StatefulWidget {
 class _IndexPageState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
-    final pageProvider = Provider.of<PageProvider>(context, listen: false);
+    final indexPageProvider = context.read<IndexPageProvider>();
     return Scaffold(
       body: Container(
         decoration: buildBoxDecoration(),
         child: Stack(
           children: [
             PageView(
-              controller: pageProvider.controller,
+              controller: indexPageProvider.controller,
               scrollDirection: Axis.vertical,
               children: const [
                 HomeView(),
                 AboutView(),
                 ContactView(),
                 LocationView(),
+                OtherView(),
               ],
             ),
             const HeaderContainerWidget(),

@@ -1,5 +1,5 @@
 import 'package:argo/argo.dart';
-import 'package:base_web_landing/app/presenter/page_provider.dart';
+import 'package:base_web_landing/app/presenter/index_page_provider.dart';
 import 'package:base_web_landing/app/ui/core/header_item_uim.dart';
 import 'package:base_web_landing/config/values/values.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +49,9 @@ class _MenuItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final headerItems = Provider.of<PageProvider>(context, listen: false).items;
+    final headerItems = context
+        .select<IndexPageProvider, List<HeaderItemUIModel>>((it) => it.items);
+    print('listen');
 
     return ColoredBox(
       color: Colors.black,
@@ -87,7 +89,7 @@ class _HeaderItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.read<PageProvider>().toggle(item.id);
+        context.read<IndexPageProvider>().toggle(item.id);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),

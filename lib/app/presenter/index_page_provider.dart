@@ -1,13 +1,11 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:base_web_landing/app/ui/core/header_item_uim.dart';
 import 'package:base_web_landing/app/presenter/items_page.dart';
 
 import 'package:universal_html/html.dart';
 
-class PageProvider extends ChangeNotifier {
-  PageProvider() {
+class IndexPageProvider extends ChangeNotifier {
+  IndexPageProvider() {
     _items = itemsPage;
     _controller = PageController();
     _curentIndex = 0;
@@ -21,6 +19,7 @@ class PageProvider extends ChangeNotifier {
   PageController get controller => _controller;
 
   void toggle(int id) {
+    if (_items[id].isSelected) return;
     _items = [
       for (final item in _items)
         if (item.id == id)
@@ -28,6 +27,8 @@ class PageProvider extends ChangeNotifier {
         else
           item.copyWith(isSelected: false)
     ];
+
+    notifyListeners();
   }
 
   void goTo(int index) {}
