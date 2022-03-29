@@ -11,17 +11,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  argo:
-    git:
-      url: https://github.com/jamescardona11/argo.git
-      ref: dev
+  #responsive
+  argo: ^0.0.3
       
   #router
   go_router: ^3.0.4
 
   #UI
   google_fonts: ^2.3.1
-  animate_do: ^2.1.0
   universal_html: ^2.0.8
 
   #DI
@@ -35,7 +32,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
-  build_runner: ^2.1.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
